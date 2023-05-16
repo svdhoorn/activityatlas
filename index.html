@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Documentation  -->
+  <!-- https://jsfiddle.net/9aheo6xb/ -->
+
+  <title>Activity Atlas</title>
+
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAwUExURQAAAFWZmZtT09Paqqqp6enru7v8HBwe/v7+Tk5M/Pz9/f39/v7+4ODjz8/P///9N9Af4AAAAFdFJOUwBA5thmAAAAAWJLR0QAiAUdSAAAAAd0SU1FB+QCEgYyN9P8dAAMf7gZbAAABK0lEQVQ4y+3TWw7CQBSE4V7JkiEHBZrIrbWRAiY0K0CmzALmzAKNkVwAYuF/r/efV7/DuN63jH5/9na5Q5KKZZgRSkzXC8p7VZWKvskZXR7VZWOxkZj7VZWN2lZTK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrK7VZcyaFZrLKNt7gE5b5/QD7MAAAAASUVORK5CYII=" />
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+
+  <!-- Javascript -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+
+  <style>
+    /* Define the styles for the sidebar */
+    .sidebar {
+	  font-family: "Font Awesome 5 Free";
+	  font-size: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: white;
+      border-right: 2px solid #ddd;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+	  padding: 20px;
+    }
+
+	.sidebar h2 {
+	  text-align: center;
+	}
+
+    /* Define the styles for the map */
+    .map {
+      position: fixed;
+      top: 0;
+      left: 250px;
+      width: calc(100% - 250px);
+      height: 100%;
+      z-index: 1;
+    }
+
+	input[type="checkbox"] {
+	  display: none;
+	}
+
+	label {
+	  display: inline-block;
+	  cursor: pointer;
+	  margin-bottom: 10px;
+	  position: relative;
+	}
+
+	label i {
+	  margin-left: 5px;
+	}
+
+	input[type="checkbox"] + label:before {
+	  content: "";
+	  display: inline-block;
+	  width: 18px;
+	  height: 18px;
+	  margin-right: 10px;
+	  position: relative;
+	  top: 5px;
+	  background-color: #fff;
+	  border: 1px solid #ccc;
+	}
+
+	input[type="checkbox"]:checked + label:before {
+	  background-color: #2ecc71;
+	  border-color: #2ecc71;
+	}
+
+	input[type="checkbox"]:checked + label:after {
+	  content: "\f00c";
+	  font-family: "Font Awesome 5 Free";
+	  font-weight: 1000;
+	  color: #fff;
+	  position: absolute;
+	  left: 2px;
+	  bottom: 6px;
+	  font-size: 19px;
+	}
+
+	.classAllLayersIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classAdventureParkIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classCampgroundIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: green;
+	}
+
+	.classMuseumIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: green;
+	}
+
+	.classPlaygroundIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classRegionIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classSwimmingIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classThemeparkIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classWalkingIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+	.classZooIcon {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+
+
+
+  </style>
+</head>
+<body>
+
+  <div id="sidebar" class="sidebar">
+    <!-- Add your sidebar content here -->
+	<br>
+    <h2>Activiteiten Atlas</h2>
+	<!-- <p>This is some text with a <i class="fas fa-check"></i> Font Awesome icon in it.</p> -->
+	<br>
+	<br>
+
+
+	<input type="checkbox" id="allLayersCheckbox" checked>
+	<label for="allLayersCheckbox" ><i class="fas fa-solid fa-layer-group classAllLayersIcon">  Alle lagen</i></label>
+
+	<hr>
+
+	<input type="checkbox" id="adventureparkCheckbox" checked>
+	<label for="adventureparkCheckbox" ><i class="fas fa-solid fa-robot classAdventureParkIcon">  Avonturenpark</i></label>
+
+	<input type="checkbox" id="zooCheckbox" checked>
+	<label for="zooCheckbox" ><i class="fas fa-solid fa-hippo classZooIcon">  Dierentuin</i></label>
+
+	<input type="checkbox" id="campingCheckbox" checked>
+	<label for="campingCheckbox" ><i class="fas fa-campground classCampgroundIcon">  Overnachten</i></label>
+
+	<input type="checkbox" id="museumCheckbox" checked>
+	<label for="museumCheckbox" ><i class="fas fa-solid fa-landmark classMuseumIcon">  Museum</i></label>
+
+	<input type="checkbox" id="playgroundCheckbox" checked>
+	<label for="playgroundCheckbox" ><i class="fas fa-child classPlaygroundIcon">  Speeltuin</i></label>
+
+	<input type="checkbox" id="playground_forestCheckbox" checked>
+	<label for="playground_forestCheckbox" ><i class="fas fa-child classPlaygroundIcon">  Speelbos</i></label><br>
+
+	<input type="checkbox" id="regionCheckbox" checked>
+	<label for="regionCheckbox" ><i class="fas fa-solid fa-panorama classRegionIcon">  Regio</i></label>
+
+	<input type="checkbox" id="themeparkCheckbox" checked>
+	<label for="themeparkCheckbox" ><i class="fas fa-solid fa-robot classThemeparkIcon">  Themapark</i></label>
+
+	<input type="checkbox" id="walkingCheckbox" checked>
+	<label for="walkingCheckbox" ><i class="fas fa-walking classWalkingIcon">  Wandelen</i></label>
+
+	<input type="checkbox" id="swimmingCheckbox" checked>
+	<label for="swimmingCheckbox" ><i class="fas fa-solid fa-person-swimming classSwimmingIcon">  Zwemmen</i></label>
+
+
+
+
+  </div>
+
+  <div id="map" class="map"></div>
+
+  <script>
+    // Create the map
+	var map = L.map('map').setView([52.2, 5.8], 4);
+
+	<!-- L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', { -->
+		<!-- attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', -->
+		<!-- subdomains: 'abcd', -->
+		<!-- minZoom: 0, -->
+		<!-- maxZoom: 20, -->
+		<!-- ext: 'png' -->
+	<!-- }).addTo(map); -->
+
+		// Set up the OSM layer
+	L.tileLayer(
+		'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			minZoom: 0,
+			maxZoom: 20
+	}).addTo(map);
+
+	// Set icons
+
+	const faAdventureParkIcon = L.divIcon({
+		html: '<i class="fa-solid fa-dungeon"></i>',
+		iconSize: [30, 30],
+		className: 'classAdventureParkIconIcon'
+	});
+
+	const faCampgroundIcon = L.divIcon({
+		html: '<i class="fa fa-campground"></i>',
+		iconSize: [30, 30],
+		className: 'classCampgroundIcon'
+	});
+
+	const faMuseumIcon = L.divIcon({
+		html: '<i class="fa fa-solid fa-landmark"></i>',
+		iconSize: [30, 30],
+		className: 'classMuseumIconIcon'
+	});
+
+	const faPlaygroundIcon = L.divIcon({
+		html: '<i class="fa fa-child"></i>',
+		iconSize: [30, 30],
+		className: 'classPlaygroundIcon'
+	});
+
+	const faRegionIcon = L.divIcon({
+		html: '<i class="fa-solid fa-panorama"></i>',
+		iconSize: [30, 30],
+		className: 'classRegionIcon'
+	});
+
+	const faSwimmingIcon = L.divIcon({
+		html: '<i class="fa-solid fa-person-swimming"></i>',
+		iconSize: [30, 30],
+		className: 'classSwimmingIcon'
+	});
+
+	const faThemeparkIcon = L.divIcon({
+		html: '<i class="fa fa-campground"></i>',
+		iconSize: [30, 30],
+		className: 'classThemeparkIcon'
+	});
+
+	const faWalkingIcon = L.divIcon({
+		html: '<i class="fa fa-walking"></i>',
+		iconSize: [30, 30],
+		className: 'classWalkingIcon'
+	});
+
+	const faZooIcon = L.divIcon({
+		html: '<i class="fa-solid fa-hippo"></i>',
+		iconSize: [30, 30],
+		className: 'classZooIcon'
+	});
+
+// Load the GeoJSON file
+<!-- fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson') -->
+fetch('data.geojson')
+  .then(response => response.json())
+  .then(data => {
+
+	function onEachFeature(feature, layer) {
+		  var popupText = "<b>Naam:</b> " + feature.properties.Naam +
+			"<br><a href='" + feature.properties.Website + "'>Website</a>";
+
+		  layer.bindPopup(popupText, {
+			closeButton: true,
+			offset: L.point(0, -20)
+		  });
+		  layer.on('click', function() {
+			layer.openPopup();
+		  });
+		}
+
+	// Create a layer for category 'adventurepark'
+    var adventurepark = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Avonturenpark';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faAdventureParkIcon });
+      },
+	  onEachFeature: onEachFeature
+    });
+
+    // Create a layer for category 'overnachten'
+    var camping = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Overnachten';
+      },
+      pointToLayer: function(feature, latlng) {
+		return L.marker(latlng, {icon: faCampgroundIcon });
+		<!-- return L.circleMarker(latlng, { -->
+          <!-- radius: feature.properties.mag * 2, -->
+          <!-- fillColor: '#ff7800', -->
+          <!-- color: '#000', -->
+          <!-- weight: 1, -->
+          <!-- opacity: 1, -->
+          <!-- fillOpacity: 0.8 -->
+        <!-- }); -->
+      },
+	  onEachFeature: onEachFeature
+    });
+
+	// Create a layer for category 'wandelen'
+    var museum = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Museum';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faMuseumIcon });
+      }
+    });
+
+	// Create a layer for category 'speeltuin'
+    var playground = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Speeltuin';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faPlaygroundIcon });
+      }
+    });
+
+	// Create a layer for category 'speeltuin'
+    var playground_forest = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Speelbos';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faPlaygroundIcon });
+      }
+    });
+
+	// Create a layer for category 'algemeen'
+    var region = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Algemeen';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faRegionIcon });
+      }
+    });
+
+	// Create a layer for category 'zwemmen'
+    var swimming = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Zwembad';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faSwimmingIcon });
+      }
+    });
+
+	// Create a layer for category 'themapark'
+    var themepark = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Attractiepark';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faThemeparkIcon });
+      },
+	  onEachFeature: onEachFeature
+    });
+
+    // Create a layer for category 'wandelen'
+    var walking = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Wandelen';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faWalkingIcon });
+      },
+	  onEachFeature: onEachFeature
+    });
+
+	// Create a layer for category 'wandelen'
+    var zoo = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.Categorie == 'Dierentuin';
+      },
+      pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: faZooIcon });
+      },
+	  onEachFeature: onEachFeature
+    });
+
+var layers = {
+  "adventureparkCheckbox": adventurepark.addTo(map),
+  "campingCheckbox": camping.addTo(map),
+  "museumCheckbox": museum.addTo(map),
+  "playgroundCheckbox": playground.addTo(map),
+  "playground_forestCheckbox": playground_forest.addTo(map),
+  "regionCheckbox": region.addTo(map),
+  "swimmingCheckbox": swimming.addTo(map),
+  "themeparkCheckbox": themepark.addTo(map),
+  "walkingCheckbox": walking.addTo(map),
+  "zooCheckbox": zoo.addTo(map)
+};
+
+for (var checkboxId in layers) {
+  document.getElementById(checkboxId).addEventListener('change', function() {
+    var layer = layers[this.id];
+    if (this.checked) {
+      layer.addTo(map);
+    } else {
+      layer.removeFrom(map);
+    }
+  });
+}
+
+var layerGroup = L.layerGroup([adventurepark, camping, museum, playground, playground_forest, region, swimming, themepark, walking, zoo]);
+
+document.getElementById('allLayersCheckbox').addEventListener('change', function() {
+    if (this.checked) {
+        layerGroup.addTo(map);
+    } else {
+        layerGroup.removeFrom(map);
+    }
+});
+
+document.getElementById('allLayersCheckbox').addEventListener('change', function() {
+    var checkboxes = document.querySelectorAll('input[type=checkbox]');
+    var isChecked = this.checked;
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = isChecked;
+    }
+
+    // If the "master" checkbox is unchecked, trigger a change event on all checkboxes
+    if (!isChecked) {
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].dispatchEvent(new Event('change'));
+        }
+    }
+});
+
+});
+
+  </script>
+</body>
+</html>
