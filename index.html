@@ -112,13 +112,13 @@
 	.classCampgroundIcon {
 	  text-align: center; /* Horizontally center the text (icon) */
 	  line-height: 30px; /* Vertically center the text (icon) */
-	  color: green;
+	  color: black;
 	}
 
 	.classMuseumIcon {
 	  text-align: center; /* Horizontally center the text (icon) */
 	  line-height: 30px; /* Vertically center the text (icon) */
-	  color: green;
+	  color: black;
 	}
 
 	.classPlaygroundIcon {
@@ -345,7 +345,8 @@ fetch('data.geojson')
       },
       pointToLayer: function(feature, latlng) {
 			return L.marker(latlng, {icon: faMuseumIcon });
-      }
+      },
+	  onEachFeature: onEachFeature
     });
 
 	// Create a layer for category 'speeltuin'
@@ -355,7 +356,8 @@ fetch('data.geojson')
       },
       pointToLayer: function(feature, latlng) {
 			return L.marker(latlng, {icon: faPlaygroundIcon });
-      }
+      },
+	  onEachFeature: onEachFeature
     });
 
 	// Create a layer for category 'speeltuin'
@@ -365,7 +367,8 @@ fetch('data.geojson')
       },
       pointToLayer: function(feature, latlng) {
 			return L.marker(latlng, {icon: faPlaygroundIcon });
-      }
+      },
+	  onEachFeature: onEachFeature
     });
 
 	// Create a layer for category 'algemeen'
@@ -375,7 +378,8 @@ fetch('data.geojson')
       },
       pointToLayer: function(feature, latlng) {
 			return L.marker(latlng, {icon: faRegionIcon });
-      }
+      },
+	  onEachFeature: onEachFeature
     });
 
 	// Create a layer for category 'zwemmen'
@@ -385,7 +389,8 @@ fetch('data.geojson')
       },
       pointToLayer: function(feature, latlng) {
 			return L.marker(latlng, {icon: faSwimmingIcon });
-      }
+      },
+	  onEachFeature: onEachFeature
     });
 
 	// Create a layer for category 'themapark'
