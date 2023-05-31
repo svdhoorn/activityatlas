@@ -175,6 +175,7 @@
 { "type": "Feature", "properties": { "Naam": "Jeugdherberg Esch-sur-Alzette", "Categorie": "Overnachten", "Website": "https://www.visitluxembourg.com/nl/reisplanning/overnachten/jeugdherbergen", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 5.986366605992202, 49.495586373158403 ] } },
 { "type": "Feature", "properties": { "Naam": "Landschaftspark Duisburg Nord", "Categorie": "Avonturenpark", "Website": "https://landschaftspark.de/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 6.781022674181176, 51.480504051516021 ] } },
 { "type": "Feature", "properties": { "Naam": "Ruhr-gebiet", "Categorie": "Algemeen", "Website": "https://www.ruhr-tourismus.de/", "Locatie": null }, "geometry": { "type": "Point", "coordinates": [ 6.946811620188381, 51.482645134198982 ] } },
-{ "type": "Feature", "properties": { "Naam": "Säms Camping", "Categorie": "Overnachten", "Website": "https://murum4u.wixsite.com/sams-camping-cafe", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 13.161719683033951, 57.995115828894271 ] } }
+{ "type": "Feature", "properties": { "Naam": "Säms Camping", "Categorie": "Overnachten", "Website": "https://murum4u.wixsite.com/sams-camping-cafe", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 13.161719683033951, 57.995115828894271 ] } },
+{ "type": "Feature", "properties": { "Naam": "Aalborg Zoo", "Categorie": "Dierentuin", "Website": "https:\/\/aalborgzoo.dk\/", "Locatie": null }, "geometry": { "type": "Point", "coordinates": [ 9.897798248889398, 57.036622662310002 ] } }
 ]
 }
