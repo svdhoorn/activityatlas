@@ -97,6 +97,12 @@
 	  font-size: 19px;
 	}
 
+	.classLayersIcons {
+	  text-align: center; /* Horizontally center the text (icon) */
+	  line-height: 30px; /* Vertically center the text (icon) */
+	  color: black;
+	}
+      
 	.classAllLayersIcon {
 	  text-align: center; /* Horizontally center the text (icon) */
 	  line-height: 30px; /* Vertically center the text (icon) */
@@ -173,39 +179,43 @@
 
 
 	<input type="checkbox" id="allLayersCheckbox" checked>
-	<label for="allLayersCheckbox" ><i class="fas fa-solid fa-layer-group classAllLayersIcon">  Alle lagen</i></label>
+	<label for="allLayersCheckbox" ><i class="fas fa-solid fa-layer-group classLayersIcons">  Alle lagen</i></label>
 
 	<hr>
 
 	<input type="checkbox" id="adventureparkCheckbox" checked>
-	<label for="adventureparkCheckbox" ><i class="fas fa-solid fa-dungeon classAdventureParkIcon">  Avonturenpark</i></label>
+	<label for="adventureparkCheckbox" ><i class="fas fa-solid fa-dungeon classLayersIcons">  Avonturenpark</i></label><br>
 
 	<input type="checkbox" id="zooCheckbox" checked>
-	<label for="zooCheckbox" ><i class="fas fa-solid fa-hippo classZooIcon">  Dierentuin</i></label>
-
-	<input type="checkbox" id="campingCheckbox" checked>
-	<label for="campingCheckbox" ><i class="fas fa-campground classCampgroundIcon">  Overnachten</i></label>
+	<label for="zooCheckbox" ><i class="fas fa-solid fa-hippo classLayersIcons">  Dierentuin</i></label><br>
 
 	<input type="checkbox" id="museumCheckbox" checked>
-	<label for="museumCheckbox" ><i class="fas fa-solid fa-landmark classMuseumIcon">  Museum</i></label>
+	<label for="museumCheckbox" ><i class="fas fa-solid fa-landmark classLayersIcons">  Museum</i></label><br>
 
-	<input type="checkbox" id="playgroundCheckbox" checked>
-	<label for="playgroundCheckbox" ><i class="fas fa-child classPlaygroundIcon">  Speeltuin</i></label>
-
-	<input type="checkbox" id="playground_forestCheckbox" checked>
-	<label for="playground_forestCheckbox" ><i class="fas fa-child classPlaygroundIcon">  Speelbos</i></label><br>
+	<input type="checkbox" id="campingCheckbox" checked>
+	<label for="campingCheckbox" ><i class="fas fa-campground classLayersIcons">  Overnachten</i></label><br>
 
 	<input type="checkbox" id="regionCheckbox" checked>
-	<label for="regionCheckbox" ><i class="fas fa-solid fa-panorama classRegionIcon">  Regio</i></label>
+	<label for="regionCheckbox" ><i class="fas fa-solid fa-panorama classLayersIcons">  Regio</i></label><br>
+ 
+    <input type="checkbox" id="playground_forestCheckbox" checked>
+	<label for="playground_forestCheckbox" ><i class="fas fa-child classLayersIcons">  Speelbos</i></label><br>
+      
+	<input type="checkbox" id="playgroundCheckbox" checked>
+	<label for="playgroundCheckbox" ><i class="fas fa-child classPlaygroundIcon">  Speeltuin</i></label><br>
 
 	<input type="checkbox" id="themeparkCheckbox" checked>
-	<label for="themeparkCheckbox" ><i class="fas fa-solid fa-robot classThemeparkIcon">  Themapark</i></label>
+	<label for="themeparkCheckbox" ><i class="fas fa-solid fa-robot classLayersIcons">  Themapark</i></label><br>
 
 	<input type="checkbox" id="walkingCheckbox" checked>
-	<label for="walkingCheckbox" ><i class="fas fa-walking classWalkingIcon">  Wandelen</i></label>
+	<label for="walkingCheckbox" ><i class="fas fa-walking classLayersIcons">  Wandelen</i></label><br>
 
 	<input type="checkbox" id="swimmingCheckbox" checked>
-	<label for="swimmingCheckbox" ><i class="fas fa-solid fa-person-swimming classSwimmingIcon">  Zwemmen</i></label>
+	<label for="swimmingCheckbox" ><i class="fas fa-solid fa-person-swimming classLayersIcons">  Zwemmen</i></label><br>
+      
+    <input type="checkbox" id="swimmingCheckbox" checked>
+	<label for="swimmingCheckbox" ><i class="fas fa-solid fa-person-swimming classLayersIcons">  Overig</i></label><br>
+
 
 
 
@@ -240,11 +250,11 @@
 		iconSize: [30, 30],
 		className: 'classAdventureParkIconIcon'
 	});
-
-	const faCampgroundIcon = L.divIcon({
-		html: '<i class="fa fa-campground"></i>',
+      
+	const faZooIcon = L.divIcon({
+		html: '<i class="fa-solid fa-hippo"></i>',
 		iconSize: [30, 30],
-		className: 'classCampgroundIcon'
+		className: 'classZooIcon'
 	});
 
 	const faMuseumIcon = L.divIcon({
@@ -252,11 +262,11 @@
 		iconSize: [30, 30],
 		className: 'classMuseumIconIcon'
 	});
-
-	const faPlaygroundIcon = L.divIcon({
-		html: '<i class="fa fa-child"></i>',
+      
+	const faCampgroundIcon = L.divIcon({
+		html: '<i class="fa fa-campground"></i>',
 		iconSize: [30, 30],
-		className: 'classPlaygroundIcon'
+		className: 'classCampgroundIcon'
 	});
 
 	const faRegionIcon = L.divIcon({
@@ -265,11 +275,12 @@
 		className: 'classRegionIcon'
 	});
 
-	const faSwimmingIcon = L.divIcon({
-		html: '<i class="fa-solid fa-person-swimming"></i>',
+	const faPlaygroundIcon = L.divIcon({
+		html: '<i class="fa fa-child"></i>',
 		iconSize: [30, 30],
-		className: 'classSwimmingIcon'
+		className: 'classPlaygroundIcon'
 	});
+
 
 	const faThemeparkIcon = L.divIcon({
 		html: '<i class="fa fa-campground"></i>',
@@ -283,11 +294,13 @@
 		className: 'classWalkingIcon'
 	});
 
-	const faZooIcon = L.divIcon({
-		html: '<i class="fa-solid fa-hippo"></i>',
+	const faSwimmingIcon = L.divIcon({
+		html: '<i class="fa-solid fa-person-swimming"></i>',
 		iconSize: [30, 30],
-		className: 'classZooIcon'
+		className: 'classSwimmingIcon'
 	});
+
+
 
 // Load the GeoJSON file
 <!-- fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson') -->
