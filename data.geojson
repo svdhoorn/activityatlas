@@ -203,6 +203,8 @@
 { "type": "Feature", "properties": { "Naam": "Orebackens Camping", "Categorie": "Overnachten", "Website": "https:\/\/www.orebacken.se\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 13.721832513450247, 55.625991322025961 ] } },
 { "type": "Feature", "properties": { "Naam": "Ystad Arena - zwembad", "Categorie": "Zwembad", "Website": "https:\/\/www.ystad.se\/fritid\/ystadarena\/", "Locatie": "Binnen" }, "geometry": { "type": "Point", "coordinates": [ 13.832368536807135, 55.434041767311193 ] } },
 { "type": "Feature", "properties": { "Naam": "Sakskobing Camping", "Categorie": "Overnachten", "Website": "https:\/\/www.eurocampings.nl\/denemarken\/seeland\/sakskobing\/sakskobing-camping-101954\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 11.640687724480921, 54.798859572474136 ] } },
-{ "type": "Feature", "properties": { "Naam": "Camping Sonnenberg", "Categorie": "Overnachten", "Website": "https:\/\/campingsonnenberg.com\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 10.101350951151893, 52.888098032586271 ] } }
+{ "type": "Feature", "properties": { "Naam": "Camping Sonnenberg", "Categorie": "Overnachten", "Website": "https:\/\/campingsonnenberg.com\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 10.101350951151893, 52.888098032586271 ] } },
+{ "type": "Feature", "properties": { "Naam": "Nederlands Watermuseum", "Categorie": "Museum", "Website": "https:\/\/watermuseum.nl\/", "Locatie": "Beide" }, "geometry": { "type": "Point", "coordinates": [ 5.901452304885666, 51.988805786138691 ] } },
+{ "type": "Feature", "properties": { "Naam": "Discovery Museum", "Categorie": "Museum", "Website": "https:\/\/www.discoverymuseum.nl\/", "Locatie": "Beide" }, "geometry": { "type": "Point", "coordinates": [ 6.05852850488806, 50.861315370856019 ] } }
 ]
 }
