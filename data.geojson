@@ -205,6 +205,8 @@
 { "type": "Feature", "properties": { "Naam": "Sakskobing Camping", "Categorie": "Overnachten", "Website": "https:\/\/www.eurocampings.nl\/denemarken\/seeland\/sakskobing\/sakskobing-camping-101954\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 11.640687724480921, 54.798859572474136 ] } },
 { "type": "Feature", "properties": { "Naam": "Camping Sonnenberg", "Categorie": "Overnachten", "Website": "https:\/\/campingsonnenberg.com\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 10.101350951151893, 52.888098032586271 ] } },
 { "type": "Feature", "properties": { "Naam": "Nederlands Watermuseum", "Categorie": "Museum", "Website": "https:\/\/watermuseum.nl\/", "Locatie": "Beide" }, "geometry": { "type": "Point", "coordinates": [ 5.901452304885666, 51.988805786138691 ] } },
-{ "type": "Feature", "properties": { "Naam": "Discovery Museum", "Categorie": "Museum", "Website": "https:\/\/www.discoverymuseum.nl\/", "Locatie": "Beide" }, "geometry": { "type": "Point", "coordinates": [ 6.05852850488806, 50.861315370856019 ] } }
+{ "type": "Feature", "properties": { "Naam": "Discovery Museum", "Categorie": "Museum", "Website": "https:\/\/www.discoverymuseum.nl\/", "Locatie": "Beide" }, "geometry": { "type": "Point", "coordinates": [ 6.05852850488806, 50.861315370856019 ] } },
+{ "type": "Feature", "properties": { "Naam": "Natuurwandelroute N70", "Categorie": "Wandelen", "Website": "https:\/\/www.staatsbosbeheer.nl\/-\/media\/rijk-van-nijmegen\/wandelroute-n70-rijk-van-nijmegen.pdf", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 5.928535297626764, 51.822881470023631 ] } },
+{ "type": "Feature", "properties": { "Naam": "Klimbos Ermelo", "Categorie": "Klimpark", "Website": "https:\/\/www.klimbosermelo.nl\/nl\/", "Locatie": "Buiten" }, "geometry": { "type": "Point", "coordinates": [ 5.65550581172873, 52.287221081967715 ] } }
 ]
 }
